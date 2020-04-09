@@ -1,0 +1,10 @@
+Package: dipm
+Title: Depth Importance in Precision Medicine (DIPM) Method
+Version: 1.0
+Authors@R: person("Victoria", "Chen", email = "victoria.chen@yale.edu", role = c("aut", "cre"))
+Description: The dipm R package implements the Depth Importance in Precision Medicine (DIPM) method. The DIPM method is a classification tree that searches for subgroups with especially poor or strong performance in a given treatment group.
+Depends: R (>= 3.0.0), survival
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1

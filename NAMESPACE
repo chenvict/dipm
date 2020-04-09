@@ -1,0 +1,2 @@
+useDynLib(dipm)
+export(dipm,pmtree,pmprune,coxph_R_to_C,coxph_R_to_C_multi,lm_R_to_C)
