@@ -79,7 +79,7 @@
 #' @seealso \code{\link{dipm}}, \code{\link{spmtree}}
 #'
 #' @examples
-#'
+#' \dontrun{
 #' #
 #' # ... an example with a continuous outcome variable
 #' #     and three treatment groups
@@ -125,7 +125,7 @@
 #'
 #' # prune the tree
 #' ptree=pmprune(tree)
-#' 
+#' }
 #' @export
 
 pmprune <- function(tree) {

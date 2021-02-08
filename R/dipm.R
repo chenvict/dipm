@@ -207,6 +207,7 @@
 #' @seealso \code{\link{spmtree}}
 #'
 #' @examples
+#' \dontrun{
 #' #
 #' # ... an example with a continuous outcome variable
 #' #     and two treatment groups
@@ -384,6 +385,7 @@
 #'            maxdepth=2,maxdepth2=6)
 #' tree5=dipm(Surv(Y,C)~treatment |X3+X4,data,types=types,ntree=1,
 #'            maxdepth=2,maxdepth2=6)
+#' }
 #' 
 #' @export
 #' @import partykit
