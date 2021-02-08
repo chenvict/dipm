@@ -1,22 +1,42 @@
+#' @title Capturing Effects for Survival Outcomes 
+#' with Multiple Treatment Groups
+#' @description This function calculates the effect of a splitting
+#' node in a Cox proportional hazards model with multiple treatment
+#' groups
+#'
+#' @param X A list containing: 
+#'          the vector of outcomes Y, 
+#'          the vector of censoring indicators C, 
+#'          the vector of treatment assignments treatment,
+#'          and the vector of split indicators split; 
+#'          Note that here, the treatment variable is 
+#'          not binary, i.e., there may be more than 2 
+#'          treatment groups
+#' @return A squared z-statistic
+#'         with the largest magnitude among all of the 
+#'         split by treatment interaction terms in a 
+#'         Cox proportional hazards model
+#'         
+#' @references Chen, V., Li, C., and Zhang, H. (2021). The dipm R 
+#'             package: implementing the depth importance in 
+#'             precision medicine (DIPM) tree and forest based method.
+#'             \emph{Manuscript}.
+#' 
+#'             Chen, V. and Zhang, H. (2020). Depth importance in 
+#'             precision medicine (DIPM): a tree and forest based method. 
+#'             In \emph{Contemporary Experimental Design, 
+#'             Multivariate Analysis and Data Mining}, 243-259.
+#' 
+#'             Chen, V. and Zhang, H. (2020). Depth importance in 
+#'             precision medicine (DIPM): A tree-and forest-based 
+#'             method for right-censored survival outcomes. 
+#'             \emph{Biostatistics}.
+#'             
+#' @export
+#' @importFrom survival coxph
+#' @importFrom utils capture.output
 
 coxph_R_to_C_multi <- function(X) {
-#
-#  This function accepts as an argument a list 
-#  containing: 
-#      the vector of outcomes Y, 
-#      the vector of censoring indicators C, 
-#      the vector of treatment assignments treatment,
-#      and the vector of split indicators split.
-#
-#  Note that here, the treatment variable is
-#  not binary, i.e., there may be more than 2 
-#  treatment groups.
-#
-#  This function returns the squared z-statistic
-#  with the largest magnitude among all of the 
-#  split by treatment interaction terms in a 
-#  Cox proportional hazards model.
-#
 
     Y=X[,1]
     C=X[,2]

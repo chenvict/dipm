@@ -4,7 +4,7 @@
 #'              for the precision medicine setting.
 #'
 #' @param tree A data frame object returned from either the 
-#'             \code{dipm()} or \code{pmtree()} function
+#'             \code{dipm()} or \code{spmtree()} function
 #'
 #' @details This function implements the simple pruning strategy
 #'          proposed and used in Tsai et al. (2016). Terminal
@@ -76,7 +76,7 @@
 #'             \emph{Statistics and its Interface} \strong{9}, 
 #'             239-253.
 #'
-#' @seealso \code{\link{dipm}}, \code{\link{pmtree}}
+#' @seealso \code{\link{dipm}}, \code{\link{spmtree}}
 #'
 #' @examples
 #'
@@ -121,7 +121,7 @@
 #'         rep("ordinal",2),rep("nominal",2),rep("binary",3))
 #' 
 #' # fit a classification tree
-#' tree=pmtree(Y~treatment | .,data,types=types)
+#' tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
 #'
 #' # prune the tree
 #' ptree=pmprune(tree)
@@ -157,8 +157,10 @@ pmprune <- function(tree) {
         j=which(tree$lchild == tree$node[i])
         tree$lchild[j]=NA
         tree$rchild[j]=NA
+        tree$splitvar[j]=NA
 
-        tree=tree[-c(i,i+1),]
+        # to be compatible with party
+        # tree=tree[-c(i,i+1),] 
     }
 
     return(tree)

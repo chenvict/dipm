@@ -1,16 +1,37 @@
+#' @title Capturing Effects for Survival Outcomes 
+#' with Two Treatment Groups
+#' @description This function calculates the effect of a splitting
+#' node in a Cox proportional hazards model with two treatment groups
+#'
+#' @param X A list containing: 
+#'          the vector of outcomes Y, 
+#'          the vector of censoring indicators C, 
+#'          the vector of treatment assignments treatment,
+#'          and the vector of split indicators split
+#' @return A squared z-statistic
+#'         of the split by treatment interaction term
+#'         in a Cox proportional hazards model
+#'         
+#' @references Chen, V., Li, C., and Zhang, H. (2021). The dipm R 
+#'             package: implementing the depth importance in 
+#'             precision medicine (DIPM) tree and forest based method.
+#'             \emph{Manuscript}.
+#' 
+#'             Chen, V. and Zhang, H. (2020). Depth importance in 
+#'             precision medicine (DIPM): a tree and forest based method. 
+#'             In \emph{Contemporary Experimental Design, 
+#'             Multivariate Analysis and Data Mining}, 243-259.
+#' 
+#'             Chen, V. and Zhang, H. (2020). Depth importance in 
+#'             precision medicine (DIPM): A tree-and forest-based 
+#'             method for right-censored survival outcomes. 
+#'             \emph{Biostatistics}.
+#'             
+#' @export
+#' @importFrom survival coxph
+#' @importFrom utils capture.output
+
 coxph_R_to_C <- function(X) {
-#
-#  This function accepts as an argument a list 
-#  containing: 
-#      the vector of outcomes Y, 
-#      the vector of censoring indicators C, 
-#      the vector of treatment assignments treatment,
-#      and the vector of split indicators split.
-#
-#  This function returns the squared z-statistic
-#  of the split by treatment interaction term
-#  in a Cox proportional hazards model.
-#
 
     Y=X[,1]
     C=X[,2]

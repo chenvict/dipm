@@ -60,6 +60,10 @@
 #' @param print A boolean (TRUE/FALSE) value, where TRUE prints
 #'              a more readable version of the final tree to the
 #'              screen
+#' @param dataframe A boolean (TRUE/FALSE) value, where TRUE returns
+#'                  the final tree as a dataframe
+#' @param prune A boolean (TRUE/FALSE) value, where TRUE prunes
+#'              the final tree using \code{pmprune} function
 #'
 #' @details This function creates a classification tree to identify
 #'          subgroups relevant to the precision medicine setting.
@@ -111,8 +115,9 @@
 #'          proposed by Zhang et al. (1996) is helpful.
 #'
 #' @return \code{dipm} returns the final classification tree as a 
-#'         data frame. The data frame contains the following columns 
-#'         of information:
+#'         \code{party} object by default or a data frame. See
+#'         Hothorn and Zeileis (2015) for details. The data 
+#'         frame contains the following columns of information:
 #'         \item{node}{Unique integer values that identify each node
 #'                     in the tree, where all of the nodes are
 #'                     indexed starting from 1}
@@ -168,7 +173,22 @@
 #'         \item{besttrt}{Integers that denote the identified best 
 #'                        treatment assignment of each node}
 #'
-#' @references Chen, X., Liu, C.-T., Zhang, M., and Zhang, H. (2007).
+#' @references Chen, V., Li, C., and Zhang, H. (2021). The dipm R 
+#'             package: implementing the depth importance in 
+#'             precision medicine (DIPM) tree and forest based method.
+#'             \emph{Manuscript}.
+#' 
+#'             Chen, V. and Zhang, H. (2020). Depth importance in 
+#'             precision medicine (DIPM): a tree and forest based method. 
+#'             In \emph{Contemporary Experimental Design, 
+#'             Multivariate Analysis and Data Mining}, 243-259.
+#' 
+#'             Chen, V. and Zhang, H. (2020). Depth importance in 
+#'             precision medicine (DIPM): A tree-and forest-based 
+#'             method for right-censored survival outcomes. 
+#'             \emph{Biostatistics}.
+#'             
+#'             Chen, X., Liu, C.-T., Zhang, M., and Zhang, H. (2007).
 #'             A forest-based approach to identifying gene and
 #'             gene-gene interactions. \emph{Proceedings of the 
 #'             National Academy of Sciences of the United States of 
@@ -178,8 +198,13 @@
 #'             A tree-based method of analysis for prospective
 #'             studies. \emph{Statistics in Medicine} \strong{15},
 #'             37-49.
+#'             
+#'             Hothorn, T. and Zeileis, A. (2015). partykit: 
+#'             a modular toolkit for recursive partytioning in R. 
+#'             \emph{The Journal of Machine Learning Research} 
+#'             \strong{16}(1), 3905-3909.
 #'
-#' @seealso \code{\link{pmtree}}
+#' @seealso \code{\link{spmtree}}
 #'
 #' @examples
 #' #
@@ -361,6 +386,9 @@
 #'            maxdepth=2,maxdepth2=6)
 #' 
 #' @export
+#' @import partykit
+#' @import survival
+#' @import stats
 
 dipm <- function(formula,
                  data,
@@ -371,7 +399,9 @@ dipm <- function(formula,
                  mtry=0,
                  maxdepth=-7,
                  maxdepth2=-7,
-                 print=TRUE) {
+                 print=TRUE,
+                 dataframe=FALSE,
+                 prune=FALSE) {
 
 #    check inputs
     if ( missing(formula) ) {
@@ -476,20 +506,23 @@ dipm <- function(formula,
             exclude=c(exclude,which(colnames(data) == form_lhs[2]))
         }
 
-        X=data[,-exclude]
+        X=data.frame(data[,-exclude])
         types=types[,-exclude]
 
     } else {
 
         include=which(colnames(data) %in% form_rhs[-1])
 
-        X=data[,include]
+        X=data.frame(data[,include])
         types=types[,include]
     }
 
 #    calculate number of observations n and variables nc
     n=nrow(X)
     nc=ncol(X)
+    if(nc==1){
+        names(X) = names(data)[-exclude]
+    }
 
 #    use recommended value of total number of embedded trees
 #    if ntree argument is blank
@@ -530,6 +563,7 @@ dipm <- function(formula,
         inom=which( types == 3 )
         for ( i in 1:length(inom) ) {
             X[,inom[i]]=factor(X[,inom[i]])
+            data[,colnames(X)[inom[i]]] = X[,inom[i]]
         }
 
         ncat=sapply(X,function(x) 
@@ -618,7 +652,38 @@ dipm <- function(formula,
                          "besttrt")
 
 #    process tree output and/or print tree to screen
-    tree_txt=print.dipm(tree_txt,X,types,ncat,method,ntree,print)
+    if(form_rhs[2] != "."){
+        splitvar_include = t(data.frame(include))
+        colnames(splitvar_include) <- colnames(X)
+    }else{
+        splitvar_include = NULL
+    }
+    tree_txt=print.dipm(tree_txt,X,Y,C,treatment,
+                        types,ncat,method,ntree,print,
+                        splitvar_include)
+    if(prune){
+        tree_txt = pmprune(tree_txt)
+    }
+    
+    if(dataframe){
+        return(tree_txt)
+    }else{
+        tree_pn = ini_node(1, tree_txt, data, form_rhs[1], surv)
+        if(surv){
+            tree_py <- party(tree_pn, data,
+                             fitted = data.frame(
+                                 "(fitted)" = fitted_node(tree_pn, data = data),
+                                 "(response)" = Surv(Y, C), check.names = F),
+                             terms = terms(form))
+        }else{
+            tree_py <- party(tree_pn, data,
+                             fitted = data.frame(
+                                 "(fitted)" = fitted_node(tree_pn, data = data),
+                                 "(response)" = Y, check.names = F),
+                             terms = terms(form))
+        }
+        
+        return(tree_py) 
+    }
 
-    return(tree_txt)
 }

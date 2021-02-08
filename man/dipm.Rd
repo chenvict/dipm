@@ -4,9 +4,20 @@
 \alias{dipm}
 \title{Depth Importance in Precision Medicine (DIPM)}
 \usage{
-dipm(formula, data, types = NULL, nmin = 5, nmin2 = 5,
-  ntree = NULL, mtry = 0, maxdepth = -7, maxdepth2 = -7,
-  print = TRUE)
+dipm(
+  formula,
+  data,
+  types = NULL,
+  nmin = 5,
+  nmin2 = 5,
+  ntree = NULL,
+  mtry = 0,
+  maxdepth = -7,
+  maxdepth2 = -7,
+  print = TRUE,
+  dataframe = FALSE,
+  prune = FALSE
+)
 }
 \arguments{
 \item{formula}{A description of the model to be fit with format
@@ -73,11 +84,18 @@ embedded tree until the minimum node size
 \item{print}{A boolean (TRUE/FALSE) value, where TRUE prints
 a more readable version of the final tree to the
 screen}
+
+\item{dataframe}{A boolean (TRUE/FALSE) value, where TRUE returns
+the final tree as a dataframe}
+
+\item{prune}{A boolean (TRUE/FALSE) value, where TRUE prunes
+the final tree using \code{pmprune} function}
 }
 \value{
 \code{dipm} returns the final classification tree as a 
-        data frame. The data frame contains the following columns 
-        of information:
+        \code{party} object by default or a data frame. See
+        Hothorn and Zeileis (2015) for details. The data 
+        frame contains the following columns of information:
         \item{node}{Unique integer values that identify each node
                     in the tree, where all of the nodes are
                     indexed starting from 1}
@@ -370,7 +388,22 @@ tree5=dipm(Surv(Y,C)~treatment |X3+X4,data,types=types,ntree=1,
 
 }
 \references{
-Chen, X., Liu, C.-T., Zhang, M., and Zhang, H. (2007).
+Chen, V., Li, C., and Zhang, H. (2021). The dipm R 
+            package: implementing the depth importance in 
+            precision medicine (DIPM) tree and forest based method.
+            \emph{Manuscript}.
+
+            Chen, V. and Zhang, H. (2020). Depth importance in 
+            precision medicine (DIPM): a tree and forest based method. 
+            In \emph{Contemporary Experimental Design, 
+            Multivariate Analysis and Data Mining}, 243-259.
+
+            Chen, V. and Zhang, H. (2020). Depth importance in 
+            precision medicine (DIPM): A tree-and forest-based 
+            method for right-censored survival outcomes. 
+            \emph{Biostatistics}.
+            
+            Chen, X., Liu, C.-T., Zhang, M., and Zhang, H. (2007).
             A forest-based approach to identifying gene and
             gene-gene interactions. \emph{Proceedings of the 
             National Academy of Sciences of the United States of 
@@ -380,7 +413,12 @@ Chen, X., Liu, C.-T., Zhang, M., and Zhang, H. (2007).
             A tree-based method of analysis for prospective
             studies. \emph{Statistics in Medicine} \strong{15},
             37-49.
+            
+            Hothorn, T. and Zeileis, A. (2015). partykit: 
+            a modular toolkit for recursive partytioning in R. 
+            \emph{The Journal of Machine Learning Research} 
+            \strong{16}(1), 3905-3909.
 }
 \seealso{
-\code{\link{pmtree}}
+\code{\link{spmtree}}
 }

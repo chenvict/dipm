@@ -8,7 +8,7 @@ pmprune(tree)
 }
 \arguments{
 \item{tree}{A data frame object returned from either the 
-\code{dipm()} or \code{pmtree()} function}
+\code{dipm()} or \code{spmtree()} function}
 }
 \value{
 \code{pmprune} returns the pruned classification tree as a 
@@ -123,7 +123,7 @@ types=c("response","treatment",
         rep("ordinal",2),rep("nominal",2),rep("binary",3))
 
 # fit a classification tree
-tree=pmtree(Y~treatment | .,data,types=types)
+tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
 
 # prune the tree
 ptree=pmprune(tree)
@@ -137,5 +137,5 @@ Tsai, W.-M., Zhang, H., Buta, E., O'Malley, S.,
             239-253.
 }
 \seealso{
-\code{\link{dipm}}, \code{\link{pmtree}}
+\code{\link{dipm}}, \code{\link{spmtree}}
 }
