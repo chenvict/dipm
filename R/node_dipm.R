@@ -81,9 +81,9 @@
 #' # combine variables in a data frame
 #' data=data.frame(Y,treatment,X)
 #' 
-#' # fit a dipm classification tree
-#' tree=dipm(Y~treatment | .,data,mtry=1,maxdepth=3) 
-#' plot(tree, terminal_panel = node_dipm)
+#' # fit a dipm classification tree (remove # to run)
+#' # tree=dipm(Y~treatment | .,data,mtry=1,maxdepth=3) 
+#' # plot(tree, terminal_panel = node_dipm)
 #'             
 #' }
 #'                                     
