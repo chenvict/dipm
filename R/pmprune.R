@@ -120,11 +120,11 @@
 #' types=c("response","treatment",
 #'         rep("ordinal",2),rep("nominal",2),rep("binary",3))
 #' 
-#' # fit a classification tree
-#' tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
+#' # fit a classification tree (remove # to run)
+#' # tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
 #'
-#' # prune the tree
-#' ptree=pmprune(tree)
+#' # prune the tree (remove # to run)
+#' # ptree=pmprune(tree)
 #' }
 #' @export
 
