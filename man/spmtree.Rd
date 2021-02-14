@@ -159,6 +159,7 @@ To identify the best split at each node of the
          proposed by Zhang et al. (1996) is helpful.
 }
 \examples{
+\donttest{
 #
 # ... an example with a continuous outcome variable
 #     and two treatment groups
@@ -334,7 +335,7 @@ types=c("response","treatment",
 tree4=spmtree(Surv(Y,C)~treatment | .,data,types=types,maxdepth=2)
 tree5=spmtree(Surv(Y,C)~treatment |X3+X4,data,types=types,
              maxdepth=2)
-
+}
 }
 \references{
 Chen, V., Li, C., and Zhang, H. (2021). The dipm R 

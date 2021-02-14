@@ -207,7 +207,7 @@
 #' @seealso \code{\link{spmtree}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' #
 #' # ... an example with a continuous outcome variable
 #' #     and two treatment groups
@@ -250,8 +250,8 @@
 #' # combine variables in a data frame
 #' data=data.frame(Y,treatment,X)
 #' 
-#' # fit a dipm classification tree (remove # to run)
-#' # tree1=dipm(Y~treatment | .,data,mtry=2,maxdepth=3)
+#' # fit a dipm classification tree 
+#' tree1=dipm(Y~treatment | .,data,mtry=2,maxdepth=3)
 #'
 #' #
 #' # ... an example with a continuous outcome variable
@@ -293,8 +293,8 @@
 #' types=c("response","treatment",
 #'         rep("ordinal",2),rep("nominal",2),rep("binary",3))
 #' 
-#' # fit a dipm classification tree (remove # to run)
-#' # tree2=dipm(Y~treatment | .,data,types=types,maxdepth=2)
+#' # fit a dipm classification tree 
+#' tree2=dipm(Y~treatment | .,data,types=types,maxdepth=2)
 #'
 #' #
 #' # ... an example with a survival outcome variable
@@ -331,9 +331,9 @@
 #' # combine variables in a data frame
 #' data=data.frame(Y,treatment,X,C)
 #' 
-#' # fit a dipm classification tree (remove # to run)
-#' # tree3=dipm(Surv(Y,C)~treatment | .,data,ntree=1,maxdepth=2,
-#' #            maxdepth2=6)
+#' # fit a dipm classification tree 
+#' tree3=dipm(Surv(Y,C)~treatment | .,data,ntree=1,maxdepth=2,
+#'            maxdepth2=6)
 #'
 #' #
 #' # ... an example with a survival outcome variable
@@ -380,11 +380,11 @@
 #' types=c("response","treatment",
 #'         rep("ordinal",2),rep("nominal",2),rep("binary",3),"C")
 #' 
-#' # fit two dipm classification trees (remove # to run)
-#' # tree4=dipm(Surv(Y,C)~treatment | .,data,types=types,ntree=1,
-#' #            maxdepth=2,maxdepth2=6)
-#' # tree5=dipm(Surv(Y,C)~treatment |X3+X4,data,types=types,ntree=1,
-#' #            maxdepth=2,maxdepth2=6)
+#' # fit two dipm classification trees 
+#' tree4=dipm(Surv(Y,C)~treatment | .,data,types=types,ntree=1,
+#'            maxdepth=2,maxdepth2=6)
+#' tree5=dipm(Surv(Y,C)~treatment |X3+X4,data,types=types,ntree=1,
+#'            maxdepth=2,maxdepth2=6)
 #' }
 #' 
 #' @export

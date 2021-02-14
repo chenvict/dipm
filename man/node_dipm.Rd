@@ -21,7 +21,8 @@ This function visualizes the precision medicine trees
  proposed in Chen and Zhang (2020a, b).
 }
 \examples{
-#
+\donttest{
+#' #
 # ... an example with a continuous outcome variable
 #     and two treatment groups
 #
@@ -64,9 +65,10 @@ Y=rnorm(N,mean=Link,sd=1)
 data=data.frame(Y,treatment,X)
 
 # fit a dipm classification tree
-tree=dipm(Y~treatment | .,data,mtry=2,maxdepth=3) 
+tree=dipm(Y~treatment | .,data,mtry=1,maxdepth=3) 
 plot(tree, terminal_panel = node_dipm)
             
+}
                                     
 }
 \references{

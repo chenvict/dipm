@@ -173,7 +173,7 @@
 #' @seealso \code{\link{dipm}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' #
 #' # ... an example with a continuous outcome variable
 #' #     and two treatment groups
@@ -216,8 +216,8 @@
 #' # combine variables in a data frame
 #' data=data.frame(Y,treatment,X)
 #' 
-#' # fit a classification tree (remove # to run)
-#' # tree1=spmtree(Y~treatment | .,data,maxdepth=3)
+#' # fit a classification tree
+#' tree1=spmtree(Y~treatment | .,data,maxdepth=3)
 #'
 #' #
 #' # ... an example with a continuous outcome variable

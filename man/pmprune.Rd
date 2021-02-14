@@ -81,7 +81,7 @@ This function implements the simple pruning strategy
          the same identified optimal treatment assignment.
 }
 \examples{
-
+\donttest{
 #
 # ... an example with a continuous outcome variable
 #     and three treatment groups
@@ -127,7 +127,7 @@ tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
 
 # prune the tree
 ptree=pmprune(tree)
-
+}
 }
 \references{
 Tsai, W.-M., Zhang, H., Buta, E., O'Malley, S., 
