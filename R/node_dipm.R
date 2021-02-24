@@ -10,6 +10,8 @@
 #' @details This function visualizes the precision medicine trees
 #'  proposed in Chen and Zhang (2020a, b).
 #' 
+#' @return No return value, called for plot
+#' 
 #' @references Chen, V., Li, C., and Zhang, H. (2021). The dipm R 
 #'             package: implementing the depth importance in 
 #'             precision medicine (DIPM) tree and forest based method.
@@ -38,13 +40,13 @@
 #' @seealso \code{\link{dipm}}, \code{\link{spmtree}}
 #' 
 #' @examples
-#' \donttest{
+#' 
 #' #' #
 #' # ... an example with a continuous outcome variable
 #' #     and two treatment groups
 #' #
 #'
-#' N=300
+#' N=100
 #' set.seed(123)
 #'
 #' # generate binary treatments
@@ -79,13 +81,13 @@
 #' Y=rnorm(N,mean=Link,sd=1)
 #'
 #' # combine variables in a data frame
-#' data=data.frame(Y,treatment,X)
+#' data=data.frame(X,Y,treatment)
 #' 
 #' # fit a dipm classification tree
 #' tree=dipm(Y~treatment | .,data,mtry=1,maxdepth=3) 
 #' plot(tree, terminal_panel = node_dipm)
 #'             
-#' }
+#' 
 #'                                     
 #' @export
 #' @import partykit
@@ -96,13 +98,14 @@
 
 node_dipm <- function(obj, ...)
 {
-  # extract response
+  ## old <- options()
+  ## extract response
   y <- obj$fitted[["(response)"]]
   is_surv <- inherits(y, "Surv") || !is.null(obj$dat$C)
   is_num <- is.numeric(y) || is.null(obj$dat$C)
   stopifnot(is_surv || is_num)
   
-  # panel function for nodes
+  ## panel function for nodes
   rval <- function(node, 
          # .nid = function(node) paste0(nam[id_node(node)], 
          # ", n = ", node$info$nobs, ", treatment = ", 
@@ -200,6 +203,8 @@ node_dipm <- function(obj, ...)
     upViewport(n = 2)
   }
 
+  ## new <- options()
+  ## print(all.equal(old, new))
   return(rval)
 }
 class(node_dipm) <- "grapcon_generator"

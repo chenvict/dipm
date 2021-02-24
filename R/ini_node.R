@@ -79,13 +79,13 @@ ini_node <- function(j, tree, data, trt, surv){
 #' @seealso \code{\link{dipm}}, \code{\link{spmtree}}
 #' 
 #' @examples
-#' \donttest{
+#' 
 #' #
 #' # ... an example with a continuous outcome variable
 #' #     and two treatment groups
 #' #
 #'
-#' N=300
+#' N=100
 #' set.seed(123)
 #'
 #' # generate binary treatments
@@ -120,12 +120,12 @@ ini_node <- function(j, tree, data, trt, surv){
 #' Y=rnorm(N,mean=Link,sd=1)
 #'
 #' # combine variables in a data frame
-#' data=data.frame(Y,treatment,X)
+#' data=data.frame(X,Y,treatment)
 #' 
 #' # fit a dipm classification tree
 #' tree=dipm(Y~treatment | .,data,mtry=1,maxdepth=3) 
 #' predict_dipm(tree, newdata = head(data))
-#' }           
+#'           
 #'                                     
 #' @export
 #' @import partykit

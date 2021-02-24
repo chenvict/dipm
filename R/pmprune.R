@@ -79,13 +79,13 @@
 #' @seealso \code{\link{dipm}}, \code{\link{spmtree}}
 #'
 #' @examples
-#' \donttest{
+#' 
 #' #
 #' # ... an example with a continuous outcome variable
 #' #     and three treatment groups
 #' #
 #' 
-#' N=600
+#' N=300
 #' set.seed(123)
 #' 
 #' # generate treatments
@@ -114,18 +114,18 @@
 #' Y=rnorm(N,mean=Link,sd=1)
 #' 
 #' # combine variables in a data frame
-#' data=data.frame(Y,treatment,X)
+#' data=data.frame(X,Y,treatment)
 #' 
 #' # create vector of variable types
-#' types=c("response","treatment",
-#'         rep("ordinal",2),rep("nominal",2),rep("binary",3))
+#' types=c(rep("ordinal",2),rep("nominal",2),rep("binary",3),
+#'             "response","treatment")
 #' 
 #' # fit a classification tree
 #' tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
 #'
 #' # prune the tree
 #' ptree=pmprune(tree)
-#' }
+#' 
 #' @export
 
 pmprune <- function(tree) {

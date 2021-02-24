@@ -208,13 +208,13 @@ This function creates a classification tree to identify
          proposed by Zhang et al. (1996) is helpful.
 }
 \examples{
-\donttest{
+
 #
 # ... an example with a continuous outcome variable
 #     and two treatment groups
 #
 
-N=300
+N=100
 set.seed(123)
 
 # generate binary treatments
@@ -249,11 +249,12 @@ Link=calculateLink(X,treatment)
 Y=rnorm(N,mean=Link,sd=1)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X)
+data=data.frame(X,Y,treatment)
 
 # fit a dipm classification tree 
-tree1=dipm(Y~treatment | .,data,mtry=2,maxdepth=3)
+tree1=dipm(Y~treatment | .,data,mtry=1,maxdepth=3)
 
+\donttest{
 #
 # ... an example with a continuous outcome variable
 #     and three treatment groups
@@ -288,11 +289,11 @@ Link=calculateLink(X,treatment)
 Y=rnorm(N,mean=Link,sd=1)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X)
+data=data.frame(X,Y,treatment)
 
 # create vector of variable types
-types=c("response","treatment",
-        rep("ordinal",2),rep("nominal",2),rep("binary",3))
+types=c(rep("ordinal",2),rep("nominal",2),rep("binary",3),
+        "response","treatment")
 
 # fit a dipm classification tree 
 tree2=dipm(Y~treatment | .,data,types=types,maxdepth=2)
@@ -330,7 +331,7 @@ Y=pmin(T,C0)
 C=(T <= C0)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X,C)
+data=data.frame(X,Y,C,treatment)
 
 # fit a dipm classification tree 
 tree3=dipm(Surv(Y,C)~treatment | .,data,ntree=1,maxdepth=2,
@@ -375,11 +376,11 @@ Y=pmin(T,C0)
 C=(T <= C0)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X,C)
+data=data.frame(X,Y,C,treatment)
 
 # create vector of variable types
-types=c("response","treatment",
-        rep("ordinal",2),rep("nominal",2),rep("binary",3),"C")
+types=c(rep("ordinal",2),rep("nominal",2),rep("binary",3),
+        "response","C","treatment")
 
 # fit two dipm classification trees 
 tree4=dipm(Surv(Y,C)~treatment | .,data,types=types,ntree=1,

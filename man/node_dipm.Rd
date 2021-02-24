@@ -12,6 +12,9 @@ node_dipm(obj, ...)
 
 \item{...}{Arguments passed on to plotfun}
 }
+\value{
+No return value, called for plot
+}
 \description{
 This function provides a new plot method for \code{dipm}
  and \code{spmtree}.
@@ -21,13 +24,13 @@ This function visualizes the precision medicine trees
  proposed in Chen and Zhang (2020a, b).
 }
 \examples{
-\donttest{
+
 #' #
 # ... an example with a continuous outcome variable
 #     and two treatment groups
 #
 
-N=300
+N=100
 set.seed(123)
 
 # generate binary treatments
@@ -62,13 +65,13 @@ Link=calculateLink(X,treatment)
 Y=rnorm(N,mean=Link,sd=1)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X)
+data=data.frame(X,Y,treatment)
 
 # fit a dipm classification tree
 tree=dipm(Y~treatment | .,data,mtry=1,maxdepth=3) 
 plot(tree, terminal_panel = node_dipm)
             
-}
+
                                     
 }
 \references{

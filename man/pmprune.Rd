@@ -81,13 +81,13 @@ This function implements the simple pruning strategy
          the same identified optimal treatment assignment.
 }
 \examples{
-\donttest{
+
 #
 # ... an example with a continuous outcome variable
 #     and three treatment groups
 #
 
-N=600
+N=300
 set.seed(123)
 
 # generate treatments
@@ -116,18 +116,18 @@ Link=calculateLink(X,treatment)
 Y=rnorm(N,mean=Link,sd=1)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X)
+data=data.frame(X,Y,treatment)
 
 # create vector of variable types
-types=c("response","treatment",
-        rep("ordinal",2),rep("nominal",2),rep("binary",3))
+types=c(rep("ordinal",2),rep("nominal",2),rep("binary",3),
+            "response","treatment")
 
 # fit a classification tree
 tree=spmtree(Y~treatment | .,data,types=types,dataframe=TRUE)
 
 # prune the tree
 ptree=pmprune(tree)
-}
+
 }
 \references{
 Tsai, W.-M., Zhang, H., Buta, E., O'Malley, S., 

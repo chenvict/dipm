@@ -159,7 +159,7 @@ To identify the best split at each node of the
          proposed by Zhang et al. (1996) is helpful.
 }
 \examples{
-\donttest{
+
 #
 # ... an example with a continuous outcome variable
 #     and two treatment groups
@@ -200,11 +200,12 @@ Link=calculateLink(X,treatment)
 Y=rnorm(N,mean=Link,sd=1)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X)
+data=data.frame(X,Y,treatment)
 
 # fit a classification tree
 tree1=spmtree(Y~treatment | .,data,maxdepth=3)
 
+\donttest{
 #
 # ... an example with a continuous outcome variable
 #     and three treatment groups
@@ -239,11 +240,11 @@ Link=calculateLink(X,treatment)
 Y=rnorm(N,mean=Link,sd=1)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X)
+data=data.frame(X,Y,treatment)
 
 # create vector of variable types
-types=c("response","treatment",
-        rep("ordinal",2),rep("nominal",2),rep("binary",3))
+types=c(rep("ordinal",2),rep("nominal",2),rep("binary",3),
+        "response","treatment")
 
 # fit a classification tree
 tree2=spmtree(Y~treatment | .,data,types=types)
@@ -281,7 +282,7 @@ Y=pmin(T,C0)
 C=(T <= C0)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X,C)
+data=data.frame(X,Y,C,treatment)
 
 # fit a classification tree
 tree3=spmtree(Surv(Y,C)~treatment | .,data,maxdepth=2)
@@ -325,11 +326,11 @@ Y=pmin(T,C0)
 C=(T <= C0)
 
 # combine variables in a data frame
-data=data.frame(Y,treatment,X,C)
+data=data.frame(X,Y,C,treatment)
 
 # create vector of variable types
-types=c("response","treatment",
-        rep("ordinal",2),rep("nominal",2),rep("binary",3),"C")
+types=c(rep("ordinal",2),rep("nominal",2),rep("binary",3),
+        "response","C","treatment")
 
 # fit two classification trees
 tree4=spmtree(Surv(Y,C)~treatment | .,data,types=types,maxdepth=2)
