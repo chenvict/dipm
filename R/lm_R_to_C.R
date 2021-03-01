@@ -36,6 +36,9 @@
 #' @importFrom utils capture.output
 #' 
 lm_R_to_C <- function(X) {
+    
+    old <- options()         
+    on.exit(options(old))  
 
     Y=X[,1]
     treatment=as.factor(X[,2])
