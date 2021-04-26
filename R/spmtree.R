@@ -488,7 +488,7 @@ spmtree <- function(formula,
         types=rep(2,nc) # default is to assume all candidate
                         # split variables are ordinal
 
-        prinm("Note that all candidate split variables are assumed to be ordinal.")
+        message("Note that all candidate split variables are assumed to be ordinal.")
 
     } else {
 
