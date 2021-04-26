@@ -464,7 +464,7 @@ dipm <- function(formula,
     treatment=data[,form_rhs[1]]
 
 #    determine appropriate method from data and value of "mtry"
-    ntrts=length(levels(as.factor(treatment)))
+    ntrts=nlevels(as.factor(treatment))
 
     if ( ntrts <= 1 ) {
         stop("At least 2 treatment groups are required.")
