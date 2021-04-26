@@ -423,7 +423,7 @@ spmtree <- function(formula,
     treatment=data[,form_rhs[1]]
 
 #    determine appropriate method from data
-    ntrts=length(levels(as.factor(treatment)))
+    ntrts=nlevels(as.factor(treatment))
 
     if ( ntrts <= 1 ) {
         stop("At least 2 treatment groups are required.")
