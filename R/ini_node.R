@@ -58,7 +58,7 @@ ini_node <- function(j, tree, data, trt, surv){
 #' @details This function implements the optimal treatment 
 #' prediction proposed in Chen and Zhang (2020a, b).
 #' 
-#' @return \code{predict.dipm} returns the predicted optimal 
+#' @return \code{predict_dipm} returns the predicted optimal 
 #' treatment for a new subject 
 #' 
 #' @references Chen, V., Li, C., and Zhang, H. (2021). The dipm R 

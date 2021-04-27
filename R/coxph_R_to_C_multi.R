@@ -32,7 +32,6 @@
 #'             method for right-censored survival outcomes. 
 #'             \emph{Biostatistics}.
 #'             
-#' @export
 #' @importFrom survival coxph
 #' @importFrom utils capture.output
 

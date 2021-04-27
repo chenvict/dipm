@@ -13,7 +13,7 @@ predict_dipm(tree, newdata)
 \item{newdata}{A matrix or data frame of the new data}
 }
 \value{
-\code{predict.dipm} returns the predicted optimal 
+\code{predict_dipm} returns the predicted optimal 
 treatment for a new subject
 }
 \description{

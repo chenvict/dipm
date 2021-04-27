@@ -1,7 +1,7 @@
 Package: dipm
 Title: Depth Importance in Precision Medicine (DIPM) Method
-Version: 1.1
-Date: 2021-03-03
+Version: 1.2
+Date: 2021-04-24
 Authors@R: c(person(given = "Cai", family = "Li", 
 	             role = c("aut", "cre"), email = "cai.li@yale.edu"),
              person(given = "Victoria", family = "Chen", 
@@ -19,6 +19,5 @@ NeedsCompilation: yes
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyLoad: yes
-LazyData: true
 Repository: CRAN
 RoxygenNote: 7.1.1
