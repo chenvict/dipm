@@ -503,7 +503,7 @@ print.dipm <- function(tree_txt,X,Y,C,treatment,
       #        print header
       if ( method == -1 ) {
         
-        message(paste("PM Tree ",
+        message(paste("SPM Tree ",
                     "(Continuous Y, ",
                     "2 treatments",
                     "):",
@@ -531,7 +531,7 @@ print.dipm <- function(tree_txt,X,Y,C,treatment,
         
       } else if ( method == 11 ) {
         
-        message(paste("PM Tree ",
+        message(paste("SPM Tree ",
                     "(Survival Y, ",
                     "2 treatments",
                     "):",
@@ -599,7 +599,7 @@ print.dipm <- function(tree_txt,X,Y,C,treatment,
         
       } else if ( method == 24 ) {
         
-        message(paste("PM Tree ",
+        message(paste("SPM Tree ",
                     "(Continuous Y, ",
                     "2+ treatments",
                     "):",
@@ -607,7 +607,7 @@ print.dipm <- function(tree_txt,X,Y,C,treatment,
         
       } else if ( method == 25 ) {
         
-        message(paste("PM Tree ",
+        message(paste("SPM Tree ",
                     "(Survival Y, ",
                     "2+ treatments",
                     "):",
