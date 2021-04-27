@@ -49,7 +49,7 @@ coxph_R_to_C_multi <- function(X) {
     trts=unique(X[,3])
     ntrt=length(trts)
 
-    for ( i in 1:4 ) {
+    for ( i in 1:ntrt ) {
 
         if ( length( table(C[which(treatment==trts[i])]) ) == 1 ) {
 
