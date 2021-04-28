@@ -615,7 +615,8 @@ dipm <- function(formula,
                mtry=mtry,
                maxdepth=maxdepth,
                maxdepth2=maxdepth2,
-               method=method)
+               method=method,
+               environment(lm_R_to_C))
 
     rm(XC)
 
