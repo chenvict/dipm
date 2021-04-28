@@ -29,6 +29,7 @@
 #'             
 #' @importFrom survival coxph
 #' @importFrom utils capture.output
+#' @noRd
 
 coxph_R_to_C <- function(X) {
 
