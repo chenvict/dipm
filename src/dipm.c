@@ -6094,14 +6094,14 @@ maketree(SEXP R_ntree,
 
 {
 //   initialize objects from R into C
-    R_ntree=coerceVector(R_ntree,INTSXP);
-    R_n=coerceVector(R_n,INTSXP);
-    R_nc=coerceVector(R_nc,INTSXP);
-    R_nmin=coerceVector(R_nmin,INTSXP);
-    R_nmin2=coerceVector(R_nmin2,INTSXP);
-    R_mtry=coerceVector(R_mtry,INTSXP);
-    R_maxdepth=coerceVector(R_maxdepth,INTSXP);
-    R_method=coerceVector(R_method,INTSXP);
+    PROTECT(R_ntree=coerceVector(R_ntree,INTSXP));
+    PROTECT(R_n=coerceVector(R_n,INTSXP));
+    PROTECT(R_nc=coerceVector(R_nc,INTSXP));
+    PROTECT(R_nmin=coerceVector(R_nmin,INTSXP));
+    PROTECT(R_nmin2=coerceVector(R_nmin2,INTSXP));
+    PROTECT(R_mtry=coerceVector(R_mtry,INTSXP));
+    PROTECT(R_maxdepth=coerceVector(R_maxdepth,INTSXP));
+    PROTECT(R_method=coerceVector(R_method,INTSXP));
 
     int ntree=INTEGER(R_ntree)[0];
     int n=INTEGER(R_n)[0];
@@ -6124,6 +6124,8 @@ maketree(SEXP R_ntree,
     for (i=0; i<n; i++) {
         data[i]=&REAL(R_data)[i*nc];
     }
+
+    UNPROTECT(8);  // unprotect last 8 protected R objects
 
 //   initialize tree object
     struct node *tree=calloc(MAXSIZE,sizeof(struct node));
