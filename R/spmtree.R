@@ -218,6 +218,7 @@
 #' 
 #' # fit a classification tree
 #' tree1=spmtree(Y~treatment | .,data,maxdepth=3)
+#' # predict optimal treatment for new subjects
 #' predict(tree1, newdata=head(data), 
 #' FUN = function(n)  as.numeric(n$info$opt_trt))
 #'
