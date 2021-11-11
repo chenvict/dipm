@@ -11,9 +11,9 @@ dipm(
   nmin = 5,
   nmin2 = 5,
   ntree = NULL,
-  mtry = 0,
-  maxdepth = -7,
-  maxdepth2 = -7,
+  mtry = Inf,
+  maxdepth = Inf,
+  maxdepth2 = Inf,
   print = TRUE,
   dataframe = FALSE,
   prune = FALSE
@@ -51,7 +51,7 @@ embedded trees}
 to construct at each node of the overall 
 classification tree; if left blank, the default value
 of \code{ceiling(min(max(sqrt(n), sqrt(nc)), 1000))}
-will be used if \code{mtry = 0} below and 
+will be used if \code{mtry = Inf} below and 
 \code{ceiling(min(max(n, nc), 1000))} otherwise; 
 \code{n} is the total sample size of the data, and
 \code{nc} is the total number of candidate split
@@ -60,7 +60,7 @@ variables}
 \item{mtry}{An integer specifying the number of candidate split
 variables to randomly select at each node of 
 embedded trees; if \code{mtry} is set equal to the
-default value of 0, then all possible splits of all
+default value of Inf, then all possible splits of all
 candidate split variables are considered at the nodes
 of the embedded trees; otherwise, a recommended value
 of \code{mtry} to use is the square root of the total

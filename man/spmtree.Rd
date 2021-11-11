@@ -9,7 +9,7 @@ spmtree(
   data,
   types = NULL,
   nmin = 5,
-  maxdepth = -7,
+  maxdepth = Inf,
   print = TRUE,
   dataframe = FALSE,
   prune = FALSE

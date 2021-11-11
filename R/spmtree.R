@@ -363,7 +363,7 @@ spmtree = function(formula,
                    data,
                    types = NULL,
                    nmin = 5,
-                   maxdepth = -7,
+                   maxdepth = Inf,
                    print = TRUE,
                    dataframe = FALSE,
                    prune = FALSE){
@@ -424,6 +424,10 @@ spmtree = function(formula,
 
 #    determine appropriate method from data
     ntrts = nlevels(as.factor(treatment))
+    
+    if(maxdepth == Inf){
+        maxdepth = -7
+    }
 
     if(ntrts <= 1){
         stop("At least 2 treatment groups are required.")
