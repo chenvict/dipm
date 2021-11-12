@@ -67,7 +67,7 @@
 #'     ((X[, 1] <= 0) & (X[, 2] <= 0)) *
 #'         (25 * (1 - treatment) + 8 * treatment) + 
 #'
-#'     ((X[, 1] <= 0) & (X[, 2] > 0) *
+#'     ((X[, 1] <= 0) & (X[, 2] > 0)) *
 #'         (18 * (1 - treatment) + 20 * treatment) +
 #'
 #'     ((X[,1 ] > 0) & (X[, 3] <= 0)) *
@@ -133,7 +133,7 @@ node_dipm = function(obj, ...)
     )
     pushViewport(node_vp)
     
-    grid.rect(gp = gpar(fill = "white"))
+    grid.rect(gp = gpar(fill = "white", cex = 0.5))
     
     ## viewport plot
     plotvp = viewport(
@@ -195,7 +195,7 @@ node_dipm = function(obj, ...)
              height = max(unit(1, "lines"), 
                           unit(1.3, "strheight", nid_text)))
     pushViewport(nodeIDvp)
-    grid.rect(gp = gpar(fill = "white"))
+    grid.rect(gp = gpar(fill = "white", cex = 0.5))
     grid.text(nid_text)
     popViewport()
     

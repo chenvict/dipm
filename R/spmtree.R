@@ -195,7 +195,7 @@
 #' colnames(X) = paste0("X", 1:5)
 #'
 #' # generate continuous outcome variable
-#' calculateLink = function(X,treatment){
+#' calculateLink = function(X, treatment){
 #'
 #'     ((X[, 1] <= 0) & (X[, 2] <= 0)) *
 #'         (25 * (1 - treatment) + 8 * treatment) + 

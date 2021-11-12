@@ -51,7 +51,7 @@ calculateLink = function(X, treatment){
     ((X[, 1] <= 0) & (X[, 2] <= 0)) *
         (25 * (1 - treatment) + 8 * treatment) + 
 
-    ((X[, 1] <= 0) & (X[, 2] > 0) *
+    ((X[, 1] <= 0) & (X[, 2] > 0)) *
         (18 * (1 - treatment) + 20 * treatment) +
 
     ((X[,1 ] > 0) & (X[, 3] <= 0)) *
