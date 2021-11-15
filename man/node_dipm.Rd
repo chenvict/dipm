@@ -17,7 +17,9 @@ No return value, called for plot
 }
 \description{
 This function provides a new plot method for \code{dipm}
- and \code{spmtree}.
+ and \code{spmtree}. It visualizes stratified treatment groups through 
+ boxplots for a continuous outcome and survival plots for a survival outcome, 
+ respectively.
 }
 \details{
 This function visualizes the precision medicine trees

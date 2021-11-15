@@ -1,7 +1,9 @@
 
 #' @title Panel-Generator for Visualization of A Precision Medicine Tree 
 #' @description This function provides a new plot method for \code{dipm}
-#'  and \code{spmtree}.
+#'  and \code{spmtree}. It visualizes stratified treatment groups through 
+#'  boxplots for a continuous outcome and survival plots for a survival outcome, 
+#'  respectively.
 #' 
 #' @param obj A \code{party} tree object returned from either the 
 #' \code{dipm()} or \code{spmtree()} function
