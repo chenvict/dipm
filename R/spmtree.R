@@ -376,6 +376,11 @@ spmtree = function(formula,
     if(missing(data)){
         stop("The data input is missing.")
     }
+    
+    if(!all(types %in% c("ordinal", "nominal", "binary",
+                         "response", "C", "treatment"))){
+        stop("The type input is invalid.")
+    }
 
 #    coerce data input to R "data.frame" object
     data = as.data.frame(data)
@@ -470,7 +475,6 @@ spmtree = function(formula,
 
         X = data.frame(data[, -exclude])
         types = types[, -exclude]
-
     }else{
 
         include = which(colnames(data) %in% form_rhs[-1])
@@ -483,7 +487,11 @@ spmtree = function(formula,
     n = nrow(X)
     nc = ncol(X)
     if(nc == 1){
-        names(X) = names(data)[-exclude]
+        if( form_rhs[2] == "." ){
+            names(X) = names(data)[-exclude]
+        }else{
+            names(X) = names(data)[include]
+        }
     }
 
 #    prepare types
@@ -495,7 +503,15 @@ spmtree = function(formula,
         message("Note that all candidate split variables are assumed to be ordinal.")
 
     }else{
-
+        if(nc == 1){
+            types = data.frame(types)
+            if( form_rhs[2] == "." ){
+                names(types) = names(data)[-exclude]
+            }else{
+                names(types) = names(data)[include]
+            }
+            rownames(types) = "types"
+        }
         lll = ncol(types)
         for (i in 1:lll){
             if(types[i] == "binary") types[i] = 1
