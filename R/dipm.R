@@ -611,14 +611,14 @@ dipm = function(formula,
                 stop("Binary variables must be integers.")
             }
             if(!all(unique(data[, ibin]) %in% c(0, 1))){
-                stop("Binary varialbes must be 0 or 1.")
+                stop("Binary variables must be 0 or 1.")
             }
         }else{
             if(!all(apply(data[, ibin], 2, class) %in% c("numeric", "integer"))){
                 stop("Binary variables must be integers.")
             }
             if(!all(apply(data[, ibin], 2, unique) %in% c(0, 1))){
-                stop("Binary varialbes must be 0 or 1.")
+                stop("Binary variables must be 0 or 1.")
             }
         }
     }
