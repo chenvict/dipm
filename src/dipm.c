@@ -3574,12 +3574,10 @@ maketree_surv(int n,
 
 
 void
-get_OOB(n,boot_n,array,OOB)
-
-int n;       // total sample size
-int boot_n;  // size of array
-int array[];
-int OOB[];
+get_OOB(int n,       // total sample size
+        int boot_n,  // size of array
+        int array[],
+        int OOB[])
 
 //
 //  This function accepts as an argument an array of
@@ -3651,10 +3649,8 @@ draw_boot(int n,
 
 
 int
-invert_matrix4(m,inv)
-
-double m[];
-double inv[];
+invert_matrix4(double m[],
+               double inv[])
 
 //
 //  This function accepts values from a 4 by 4 
@@ -3995,11 +3991,9 @@ get_G(int current_node,
 
 
 double
-get_s2(y,ybar,n)
-
-double y[];
-double ybar;
-int n;
+get_s2(double y[],
+       double ybar,
+       int n)
 
 //
 //  This function accepts as arguments an array of
