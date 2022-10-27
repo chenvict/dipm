@@ -1253,6 +1253,8 @@ get_min_ntrt(int lll,  // integer index of current node
     int i;
     int ntrt[nunique];
 
+    ntrt[0]=0; // initialize
+
     for ( i=0; i<nunique; i++ ) {
         ntrt[i]=get_subj_treat(lll,unique[i],n,nc,data,ncat,treat,
                                tree);
