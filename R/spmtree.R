@@ -216,6 +216,10 @@
 #' # combine variables in a data frame
 #' data = data.frame(X, Y, treatment)
 #' 
+#' if (!identical(tolower(Sys.getenv("NOT_CRAN")), "true")){
+#' Sys.setenv(OMP_THREAD_LIMIT = "2")
+#' }
+#' 
 #' # fit a classification tree
 #' tree1 = spmtree(Y ~ treatment | ., data, maxdepth = 3)
 #' # predict optimal treatment for new subjects
