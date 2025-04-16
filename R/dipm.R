@@ -215,7 +215,11 @@
 #'
 #' N = 100
 #' set.seed(123)
-#'
+#' 
+#' if (!identical(tolower(Sys.getenv("NOT_CRAN")), "true")){
+#' Sys.setenv(OMP_THREAD_LIMIT = "2")
+#' }
+#' 
 #' # generate binary treatments
 #' treatment = rbinom(N, 1, 0.5)
 #'
@@ -249,10 +253,6 @@
 #'
 #' # combine variables in a data frame
 #' data = data.frame(X, Y, treatment)
-#' 
-#' if (!identical(tolower(Sys.getenv("NOT_CRAN")), "true")){
-#' Sys.setenv(OMP_THREAD_LIMIT = "2")
-#' }
 #' 
 #' # fit a dipm classification tree 
 #' tree1 = dipm(Y ~ treatment | ., data, mtry = 1, maxdepth = 3)
@@ -751,7 +751,7 @@ dipm = function(formula,
     }else{
         splitvar_include = NULL
     }
-    tree_txt = print.dipm(tree_txt, X, Y, C, treatment,
+    tree_txt = print_dipm(tree_txt, X, Y, C, treatment,
                         types, ncat, method, ntree, print,
                         splitvar_include)
     if(prune){

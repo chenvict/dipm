@@ -35,6 +35,10 @@ This function visualizes the precision medicine trees
 N = 100
 set.seed(123)
 
+if (!identical(tolower(Sys.getenv("NOT_CRAN")), "true")){
+Sys.setenv(OMP_THREAD_LIMIT = "2")
+}
+
 # generate binary treatments
 treatment = rbinom(N, 1, 0.5)
 
@@ -68,10 +72,6 @@ Y = rnorm(N, mean = Link, sd = 1)
 
 # combine variables in a data frame
 data = data.frame(X, Y, treatment)
-
-if (!identical(tolower(Sys.getenv("NOT_CRAN")), "true")){
-Sys.setenv(OMP_THREAD_LIMIT = "2")
-}
 
 # fit a dipm classification tree
 tree = dipm(Y ~ treatment | ., data, mtry = 1, maxdepth = 3) 

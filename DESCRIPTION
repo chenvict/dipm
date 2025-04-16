@@ -1,7 +1,7 @@
 Package: dipm
 Title: Depth Importance in Precision Medicine (DIPM) Method
 Version: 1.10
-Date: 2025-04-05
+Date: 2025-04-15
 Authors@R: c(person(given = "Cai", family = "Li", 
 	             role = c("aut", "cre"), email = "cai.li.stats@gmail.com"),
              person(given = "Victoria", family = "Chen", 
