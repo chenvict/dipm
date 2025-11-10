@@ -97,7 +97,8 @@
 #' @import ggplot2
 #' @import grid
 #' @importFrom survival survfit
-#' @importFrom stats as.formula 
+#' @importFrom stats as.formula
+#' @importFrom rlang sym 
 
 node_dipm = function(obj, ...)
 {
@@ -168,9 +169,9 @@ node_dipm = function(obj, ...)
       
       ## plot
       pl = ggplot(data = pr, 
-                  aes_string(x = form_lhs[1], y = "Probability", 
-                              group = form_rhs[1],
-                              color = form_rhs[1])) +
+                  aes(x = !!sym(form_lhs[1]), y = !!sym("Probability"), 
+                              group = !!sym(form_rhs[1]),
+                              color = !!sym(form_rhs[1]))) +
         geom_step() + 
         coord_cartesian(xlim = yrange, ylim = 0:1) +
         theme_classic() + 
@@ -182,8 +183,8 @@ node_dipm = function(obj, ...)
       pr[[1]] = as.factor(pr[[1]])
       
       pl = ggplot(data = pr, 
-                  aes_string(x = form_rhs[1], y = form_lhs[1], 
-                             color = form_rhs[1])) +
+                  aes(x = !!sym(form_rhs[1]), y = !!sym(form_lhs[1]), 
+                             color = !!sym(form_rhs[1]))) +
         geom_boxplot() + 
         theme_classic() + 
         theme(legend.position = "none")
